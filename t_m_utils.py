@@ -1,6 +1,6 @@
 from predict_price import Predict
 from sklearn.preprocessing import StandardScaler
-import numpy as np
+
 
 
 def calculate_mean(numbers):
@@ -40,15 +40,6 @@ class DataProcess():
 
     def de_normalize(self, value):
         return value * self.std + self.mean
-    
-
-def standarization(data):
-    scaler = StandardScaler()
-    normalized_data = scaler.fit_transform(data)
-    X = normalized_data[:, :-1]  # All columns except the last one
-    y = normalized_data[:, -1]
-
-
 
 
 class TrainModell():
@@ -70,8 +61,8 @@ class TrainModell():
 
     def train_nodell(self):
         num_samples =  self.data_length
-        num_iterations = 1000
-        learning_rate = 0.001
+        num_iterations = 100
+        learning_rate = 0.5
         theta0 = 0
         theta1 = 0
         for _ in range(num_iterations):
