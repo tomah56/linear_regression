@@ -11,7 +11,7 @@ def main():
         data_car = load("data.csv")
         trained_model = start(data_car)
         # print(trained_model.estimate_price(30000))
-        test(data_car)
+        # test(data_car)
         # print(data_car)
     except (KeyError, Exception) as e:
         print("Error:", e)
