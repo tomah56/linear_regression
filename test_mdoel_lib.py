@@ -6,8 +6,6 @@ from sklearn.metrics import mean_squared_error
 import matplotlib.pyplot as plt
 
 def test(data):
-    # Assuming you have a pandas DataFrame named 'data' with columns 'price' and 'km'
-    # Extract the data from the DataFrame
     X = data[['km']]
     y = data['price']
 
@@ -16,8 +14,6 @@ def test(data):
 
     # Create a linear regression model
     model = LinearRegression()
-
-
 
     # Train the model on the training data
     model.fit(X_train, y_train)
