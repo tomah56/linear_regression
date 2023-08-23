@@ -55,7 +55,8 @@ def main():
         theta0 = data['theta0']
         theta1 = data['theta1']
         err = data['avg_error']
-        user_input = 89000
+        user_input = 0
+        # user_input = 89000
         if not user_input:
             user_input = input("Please enter a km (mileage): ")
         program = Predict()
