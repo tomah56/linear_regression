@@ -50,6 +50,7 @@ class TrainModell():
         self.norm_kms = DataProcess(self.kms)
         self.norm_my_modell = Predict()
         self.my_modell = Predict()
+        self.track_error = None
         self.predicted = None
         self.norm_predicted = None
         self.error_points = None
@@ -62,17 +63,20 @@ class TrainModell():
     def train_nodell(self):
         num_samples =  self.data_length
         num_iterations = 100
-        learning_rate = 0.5
+        learning_rate = 0.1
         theta0 = 0
         theta1 = 0
+        track = []
         for _ in range(num_iterations):
             predicted_prices = [self.norm_my_modell.estimate_price(mileage) for mileage in self.norm_kms.norm_dataset]
             error0 = sum(predicted_price - true_price for predicted_price, true_price in zip(predicted_prices, self.norm_prices.norm_dataset))
             error1 = sum((predicted_price - true_price) * mileage for predicted_price, true_price, mileage in zip(predicted_prices, self.norm_prices.norm_dataset, self.norm_kms.norm_dataset))
+            track.append(error1)
             theta0 -= learning_rate * (1/num_samples) * error0
             theta1 -= learning_rate * (1/num_samples) * error1
             self.norm_my_modell.setTheta_0(theta0)
             self.norm_my_modell.setTheta_1(theta1)
+        self.track_error = track
     
     def denorm_modell(self):
         # theta_0_normalized = self.norm_my_modell.theta_0
