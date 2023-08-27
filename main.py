@@ -1,5 +1,5 @@
 from load_csv import load
-from train_mode import start
+from train_model import start
 # from test_mdoel_lib import test
 
 
