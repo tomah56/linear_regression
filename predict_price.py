@@ -65,7 +65,8 @@ def main():
         program.setError(err)
         estimated_price = program.estimate_price(int(user_input))
         print(int(estimated_price))
-        plot(program, estimated_price, int(user_input))
+        if program.theta_0:
+            plot(program, estimated_price, int(user_input))
     except (KeyError, Exception) as e:
         print("Error:", e)
 
